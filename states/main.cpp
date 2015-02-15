@@ -51,8 +51,8 @@ int main(int argc, char *argv[])
 
     //Uncomment the following line to open the states.qml example and comment the transitions.qml line.
     //viewer.setMainQmlFile(QLatin1String("qml/states/states.qml"));
-    //viewer.setMainQmlFile(QLatin1String("qml/states/chessboard.qml"));
-    viewer.setMainQmlFile(QLatin1String("qml/states/transitions.qml"));
+    viewer.setMainQmlFile(QLatin1String("qml/states/chessboard.qml"));
+    //viewer.setMainQmlFile(QLatin1String("qml/states/transitions.qml"));
     viewer.showExpanded();
 
     return app.exec();

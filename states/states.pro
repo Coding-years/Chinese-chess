@@ -4,6 +4,7 @@ folder_01.target = qml
 DEPLOYMENTFOLDERS = folder_01
 
 # Additional import path used to resolve QML modules in Creator's code model
+QT += qml quick
 QML_IMPORT_PATH =
 
 # Avoid auto screen rotation
@@ -28,3 +29,6 @@ exists(qmlapplicationviewer/qmlapplicationviewer.pri):include(qmlapplicationview
 #else:include(../../helper/qmlapplicationviewer/qmlapplicationviewer.pri)
 else:include(/usr/local/Qt/Examples/Qt-5.3/declarative/helper/qmlapplicationviewer/qmlapplicationviewer.pri)
 qtcAddDeployment()
+
+OTHER_FILES += \
+    qml/states/chess_items/Quarter_mark_right_up.qml
