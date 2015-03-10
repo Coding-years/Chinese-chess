@@ -6,6 +6,7 @@ DEPLOYMENTFOLDERS = folder_01
 # Additional import path used to resolve QML modules in Creator's code model
 QT += qml quick
 QML_IMPORT_PATH =
+TARGET = states
 
 # Avoid auto screen rotation
 #DEFINES += ORIENTATIONLOCK
@@ -24,11 +25,14 @@ QML_IMPORT_PATH =
 SOURCES += main.cpp
 
 # Please do not modify the following two lines. Required for deployment.
-desktopInstallPrefix=$$[QT_INSTALL_EXAMPLES]/declarative/animation/states
-exists(qmlapplicationviewer/qmlapplicationviewer.pri):include(qmlapplicationviewer/qmlapplicationviewer.pri)
+#desktopInstallPrefix=$$[QT_INSTALL_EXAMPLES]/declarative/animation/states
+#exists(qmlapplicationviewer/qmlapplicationviewer.pri):include(qmlapplicationviewer/qmlapplicationviewer.pri)
 #else:include(../../helper/qmlapplicationviewer/qmlapplicationviewer.pri)
-else:include(/usr/local/Qt/Examples/Qt-5.3/declarative/helper/qmlapplicationviewer/qmlapplicationviewer.pri)
-qtcAddDeployment()
+#else:include(/usr/local/Qt/Examples/Qt-5.3/declarative/helper/qmlapplicationviewer/qmlapplicationviewer.pri)
+#qtcAddDeployment()
 
+#include(/usr/local/Qt/Examples/Qt-5.3/quick/controls/shared/shared.pri)
 OTHER_FILES += \
-    qml/states/chess_items/Quarter_mark_right_up.qml
+    qml/states/chessboard.qml
+
+RESOURCES += resources.qrc

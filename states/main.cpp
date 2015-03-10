@@ -38,22 +38,29 @@
 **
 ****************************************************************************/
 
-#include <QtWidgets/QApplication>
-#include "/usr/local/Qt/Examples/Qt-5.3/declarative/helper/qmlapplicationviewer/qmlapplicationviewer.h"
+//#include <QtWidgets/QApplication>
+//#include "/usr/local/Qt/Examples/Qt-5.3/declarative/helper/qmlapplicationviewer/qmlapplicationviewer.h"
 //#include "qmlapplicationviewer.h"
+/*#include "QtQml"
+#include "qtquickcontrolsapplication.h"
 
 int main(int argc, char *argv[])
 {
-    QApplication app(argc, argv);
+    //QApplication app(argc, argv);
+    QtQuickControlsApplication app(argc, argv);
+    QQmlApplicationEngine engine(QUrl("qrc:/qml/states/chessboard.qml"));
 
-    QmlApplicationViewer viewer;
-    viewer.setOrientation(QmlApplicationViewer::ScreenOrientationAuto);
+    //QmlApplicationViewer viewer;
+    //viewer.setOrientation(QmlApplicationViewer::ScreenOrientationAuto);
 
     //Uncomment the following line to open the states.qml example and comment the transitions.qml line.
     //viewer.setMainQmlFile(QLatin1String("qml/states/states.qml"));
-    viewer.setMainQmlFile(QLatin1String("qml/states/chessboard.qml"));
+    //viewer.setMainQmlFile(QLatin1String("qml/states/chessboard.qml"));
     //viewer.setMainQmlFile(QLatin1String("qml/states/transitions.qml"));
-    viewer.showExpanded();
+    //viewer.showExpanded();
 
     return app.exec();
-}
+}*/
+
+#include "/usr/local/Qt/Examples/Qt-5.3/quick/shared/shared.h"
+DECLARATIVE_EXAMPLE_MAIN(qml/states/chessboard)

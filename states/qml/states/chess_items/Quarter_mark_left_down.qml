@@ -1,5 +1,5 @@
 //import QtQuick 1.0
-import QtQuick 1.0
+import QtQuick 2.2
 
 /*Rectangle {
     width: 100

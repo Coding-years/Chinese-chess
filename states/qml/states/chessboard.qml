@@ -39,7 +39,7 @@
 ****************************************************************************/
 
 //import QtQuick 1.0
-import QtQuick 1.0
+import QtQuick 2.2
 import "chess_items"
 
 /*
@@ -52,6 +52,18 @@ Rectangle {
     //Item {
     property int line_width: 4
     property int line_mid_spc: 60 /* the line middle spacing */
+
+    //Test code
+    Item {
+        property var first: { example: 'true' }    // example is interpreted as a label
+        property var second: ({ example: 'true' }) // example is interpreted as a property
+        property var third: { 'example': 'true' }  // example is interpreted as a property
+        Component.onCompleted: {
+            console.log(first.example) // prints 'undefined', as "first" was assigned a string
+            console.log(second.example) // prints 'true'
+            console.log(third.example) // prints 'true'
+        }
+    }
 
     id: page
     width: 10*line_mid_spc; height: 11*line_mid_spc
@@ -221,7 +233,141 @@ Rectangle {
         }
     }
 
-    property int chess_size: 50
+    //Item {
+    Rectangle {
+        id: chess_container
+        width: 8*line_mid_spc
+        height: 9*line_mid_spc
+        color: "transparent"
+        border.color: "black"
+        border.width: 2
+        //opacity: 0.0
+
+        //anchors.fill: parent
+        anchors.centerIn: parent
+
+        // Red Side
+         Chess {
+            id: red_rook1
+            x: 0 - width/2
+            y: 9*line_mid_spc - width/2
+            chess_color: "red"
+            chess_name: "車"
+        }
+        Chess {
+            id: red_horse1
+            x: line_mid_spc - width/2
+            y: 9*line_mid_spc - width/2
+            chess_color: "red"
+            chess_name: "马"
+        }
+        Chess {
+            id: red_minister1
+            x: 2*line_mid_spc - width/2
+            y: 9*line_mid_spc - width/2
+            chess_color: "red"
+            chess_name: "象"
+        }
+        Chess {
+            id: red_guard1
+            x: 3*line_mid_spc - width/2
+            y: 9*line_mid_spc - width/2
+            chess_color: "red"
+            chess_name: "士"
+        }
+        Chess {
+            id: red_general
+            x: 4*line_mid_spc - width/2
+            y: 9*line_mid_spc - width/2
+            chess_color: "red"
+            chess_name: "帅"
+        }
+        Chess {
+            id: red_rook2
+            x: 8*line_mid_spc - width/2
+            y: 9*line_mid_spc - width/2
+            chess_color: "red"
+            chess_name: "車"
+        }
+        Chess {
+            id: red_horse2
+            x: 7*line_mid_spc - width/2
+            y: 9*line_mid_spc - width/2
+            chess_color: "red"
+            chess_name: "马"
+        }
+        Chess {
+            id: red_minister2
+            x: 6*line_mid_spc - width/2
+            y: 9*line_mid_spc - width/2
+            chess_color: "red"
+            chess_name: "象"
+        }
+        Chess {
+            id: red_guard2
+            x: 5*line_mid_spc - width/2
+            y: 9*line_mid_spc - width/2
+            chess_color: "red"
+            chess_name: "士"
+        }
+        Chess {
+            id: red_cannon1
+            x: line_mid_spc - width/2
+            y: 7*line_mid_spc - width/2
+            chess_color: "red"
+            chess_name: "炮"
+        }
+        Chess {
+            id: red_cannon2
+            x: 7*line_mid_spc - width/2
+            y: 7*line_mid_spc - width/2
+            chess_color: "red"
+            chess_name: "炮"
+        }
+        Chess {
+            id: red_pawn1
+            x: 0 - width/2
+            y: 6*line_mid_spc - width/2
+            chess_color: "red"
+            chess_name: "兵"
+        }
+        Chess {
+            id: red_pawn2
+            x: 2*line_mid_spc - width/2
+            y: 6*line_mid_spc - width/2
+            chess_color: "red"
+            chess_name: "兵"
+        }
+        Chess {
+            id: red_pawn3
+            x: 4*line_mid_spc - width/2
+            y: 6*line_mid_spc - width/2
+            chess_color: "red"
+            chess_name: "兵"
+        }
+        Chess {
+            id: red_pawn4
+            x: 6*line_mid_spc - width/2
+            y: 6*line_mid_spc - width/2
+            chess_color: "red"
+            chess_name: "兵"
+        }
+        Chess {
+            id: red_pawn5
+            x: 8*line_mid_spc - width/2
+            y: 6*line_mid_spc - width/2
+            chess_color: "red"
+            chess_name: "兵"
+        }
+
+
+
+
+
+        // Black Side
+    }
+
+    /*property int chess_size: 50
     property int font_size: chess_size*70/100
 
     Rectangle {
@@ -256,9 +402,9 @@ Rectangle {
                 parent.anchors.verticalCenterOffset -= 2*line_mid_spc
             }
         }*/
-    }
+    //}
 
-    Rectangle {
+    /*Rectangle {
         id: red_rook
         width: chess_size
         height: chess_size
@@ -276,7 +422,7 @@ Rectangle {
             font.pixelSize: font_size
             font.family: "Helvetica"
         }
-    }
+    }*/
 
     MouseArea {
         anchors.fill: parent
