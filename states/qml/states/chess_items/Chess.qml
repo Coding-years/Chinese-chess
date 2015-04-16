@@ -6,16 +6,19 @@ import QtQuick 2.2
 }*/
 
 Item {
+    property alias background_color: chess.color
     property alias chess_color: chess_text.color
     property alias chess_name: chess_text.text
     property int chess_size: 50
     property int font_size: chess_size*70/100
+    property int color_int: 0
+    property int name_int: 0
 
     width: chess_size
     height: chess_size
 
     Rectangle {
-        //id: chess
+        id: chess
         anchors.fill: parent
         //width: chess_size
         //height: chess_size

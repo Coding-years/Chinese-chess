@@ -41,6 +41,7 @@
 //import QtQuick 1.0
 import QtQuick 2.2
 import "chess_items"
+import "chess_items/chess.js" as Logic
 
 /*
     This is exactly the same as states.qml, except that we have appended
@@ -65,6 +66,12 @@ Rectangle {
         }
     }
 
+    /* coordinate placed a chess */
+    property var chess_coordinate: {"color": "black", "name": "rook"}
+
+    Component.onCompleted: {
+        console.log(chess_coordinate.color, chess_coordinate.name)
+    }
     id: page
     width: 10*line_mid_spc; height: 11*line_mid_spc
 
@@ -236,8 +243,13 @@ Rectangle {
     //Item {
     Rectangle {
         id: chess_container
-        width: 8*line_mid_spc
-        height: 9*line_mid_spc
+        property int blockSize: line_mid_spc
+        property int chessSize: line_mid_spc * 9 / 10
+        property bool gameOver: true
+        property string mode: ""
+
+        width: 9*line_mid_spc /* hold 9 chesses*/
+        height: 10*line_mid_spc /* hold 10 chesses */
         color: "transparent"
         border.color: "black"
         border.width: 2
@@ -246,119 +258,137 @@ Rectangle {
         //anchors.fill: parent
         anchors.centerIn: parent
 
+        // Init the chesses' position
+        Component.onCompleted: {
+            console.log("Init the chesses")
+            Logic.startNewGame(chess_container, "2 player")
+            console.log("Init the chesses finished")
+        }
+
+        MouseArea {
+            anchors.fill: parent
+            onClicked: {
+                //red_horse.anchors.horizontalCenterOffset += mouseX - red_horse.x
+                //red_horse.anchors.verticalCenterOffset += mouseY - red_horse.y
+                Logic.handleClick(mouse.x,mouse.y);
+                //red_horse.x = mouseX - chess_size/2
+                //red_horse.y = mouseY - chess_size/2
+            }
+        }
+
         // Red Side
-         Chess {
-            id: red_rook1
-            x: 0 - width/2
-            y: 9*line_mid_spc - width/2
-            chess_color: "red"
-            chess_name: "車"
-        }
-        Chess {
-            id: red_horse1
-            x: line_mid_spc - width/2
-            y: 9*line_mid_spc - width/2
-            chess_color: "red"
-            chess_name: "马"
-        }
-        Chess {
-            id: red_minister1
-            x: 2*line_mid_spc - width/2
-            y: 9*line_mid_spc - width/2
-            chess_color: "red"
-            chess_name: "象"
-        }
-        Chess {
-            id: red_guard1
-            x: 3*line_mid_spc - width/2
-            y: 9*line_mid_spc - width/2
-            chess_color: "red"
-            chess_name: "士"
-        }
-        Chess {
-            id: red_general
-            x: 4*line_mid_spc - width/2
-            y: 9*line_mid_spc - width/2
-            chess_color: "red"
-            chess_name: "帅"
-        }
-        Chess {
-            id: red_rook2
-            x: 8*line_mid_spc - width/2
-            y: 9*line_mid_spc - width/2
-            chess_color: "red"
-            chess_name: "車"
-        }
-        Chess {
-            id: red_horse2
-            x: 7*line_mid_spc - width/2
-            y: 9*line_mid_spc - width/2
-            chess_color: "red"
-            chess_name: "马"
-        }
-        Chess {
-            id: red_minister2
-            x: 6*line_mid_spc - width/2
-            y: 9*line_mid_spc - width/2
-            chess_color: "red"
-            chess_name: "象"
-        }
-        Chess {
-            id: red_guard2
-            x: 5*line_mid_spc - width/2
-            y: 9*line_mid_spc - width/2
-            chess_color: "red"
-            chess_name: "士"
-        }
-        Chess {
-            id: red_cannon1
-            x: line_mid_spc - width/2
-            y: 7*line_mid_spc - width/2
-            chess_color: "red"
-            chess_name: "炮"
-        }
-        Chess {
-            id: red_cannon2
-            x: 7*line_mid_spc - width/2
-            y: 7*line_mid_spc - width/2
-            chess_color: "red"
-            chess_name: "炮"
-        }
-        Chess {
-            id: red_pawn1
-            x: 0 - width/2
-            y: 6*line_mid_spc - width/2
-            chess_color: "red"
-            chess_name: "兵"
-        }
-        Chess {
-            id: red_pawn2
-            x: 2*line_mid_spc - width/2
-            y: 6*line_mid_spc - width/2
-            chess_color: "red"
-            chess_name: "兵"
-        }
-        Chess {
-            id: red_pawn3
-            x: 4*line_mid_spc - width/2
-            y: 6*line_mid_spc - width/2
-            chess_color: "red"
-            chess_name: "兵"
-        }
-        Chess {
-            id: red_pawn4
-            x: 6*line_mid_spc - width/2
-            y: 6*line_mid_spc - width/2
-            chess_color: "red"
-            chess_name: "兵"
-        }
-        Chess {
-            id: red_pawn5
-            x: 8*line_mid_spc - width/2
-            y: 6*line_mid_spc - width/2
-            chess_color: "red"
-            chess_name: "兵"
-        }
+        /*Chess {
+        id: red_rook1
+        x: 0 - width/2
+        y: 9*line_mid_spc - width/2
+        chess_color: "red"
+        chess_name: "車"
+    }
+    Chess {
+        id: red_horse1
+        x: line_mid_spc - width/2
+        y: 9*line_mid_spc - width/2
+        chess_color: "red"
+        chess_name: "马"
+    }
+    Chess {
+        id: red_minister1
+        x: 2*line_mid_spc - width/2
+        y: 9*line_mid_spc - width/2
+        chess_color: "red"
+        chess_name: "象"
+    }
+    Chess {
+        id: red_guard1
+        x: 3*line_mid_spc - width/2
+        y: 9*line_mid_spc - width/2
+        chess_color: "red"
+        chess_name: "士"
+    }
+    Chess {
+        id: red_general
+        x: 4*line_mid_spc - width/2
+        y: 9*line_mid_spc - width/2
+        chess_color: "red"
+        chess_name: "帅"
+    }
+    Chess {
+        id: red_rook2
+        x: 8*line_mid_spc - width/2
+        y: 9*line_mid_spc - width/2
+        chess_color: "red"
+        chess_name: "車"
+    }
+    Chess {
+        id: red_horse2
+        x: 7*line_mid_spc - width/2
+        y: 9*line_mid_spc - width/2
+        chess_color: "red"
+        chess_name: "马"
+    }
+    Chess {
+        id: red_minister2
+        x: 6*line_mid_spc - width/2
+        y: 9*line_mid_spc - width/2
+        chess_color: "red"
+        chess_name: "象"
+    }
+    Chess {
+        id: red_guard2
+        x: 5*line_mid_spc - width/2
+        y: 9*line_mid_spc - width/2
+        chess_color: "red"
+        chess_name: "士"
+    }
+    Chess {
+        id: red_cannon1
+        x: line_mid_spc - width/2
+        y: 7*line_mid_spc - width/2
+        chess_color: "red"
+        chess_name: "炮"
+    }
+    Chess {
+        id: red_cannon2
+        x: 7*line_mid_spc - width/2
+        y: 7*line_mid_spc - width/2
+        chess_color: "red"
+        chess_name: "炮"
+    }
+    Chess {
+        id: red_pawn1
+        x: 0 - width/2
+        y: 6*line_mid_spc - width/2
+        chess_color: "red"
+        chess_name: "兵"
+    }
+    Chess {
+        id: red_pawn2
+        x: 2*line_mid_spc - width/2
+        y: 6*line_mid_spc - width/2
+        chess_color: "red"
+        chess_name: "兵"
+    }
+    Chess {
+        id: red_pawn3
+        x: 4*line_mid_spc - width/2
+        y: 6*line_mid_spc - width/2
+        chess_color: "red"
+        chess_name: "兵"
+    }
+    Chess {
+        id: red_pawn4
+        x: 6*line_mid_spc - width/2
+        y: 6*line_mid_spc - width/2
+        chess_color: "red"
+        chess_name: "兵"
+    }
+    Chess {
+        id: red_pawn5
+        x: 8*line_mid_spc - width/2
+        y: 6*line_mid_spc - width/2
+        chess_color: "red"
+        chess_name: "兵"
+    }*/
 
 
 
@@ -423,16 +453,6 @@ Rectangle {
             font.family: "Helvetica"
         }
     }*/
-
-    MouseArea {
-        anchors.fill: parent
-        onClicked: {
-            //red_horse.anchors.horizontalCenterOffset += mouseX - red_horse.x
-            //red_horse.anchors.verticalCenterOffset += mouseY - red_horse.y
-            red_horse.x = mouseX - chess_size/2
-            red_horse.y = mouseY - chess_size/2
-        }
-    }
 
     /*color: "#343434"*/
     //color: "#FFFFFF"
